@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Horia Iulian State — Data Analyst</title>
+<meta name="description" content="Horia Iulian State — Data Analyst &amp; Junior Data Engineer based in Vienna. SQL, Python, Power BI. BSc Data Science @ IU.">
+<link rel="icon" href="data:,">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c10;
+    --bg-elev:#12151b;
+    --bg-elev-2:#171b22;
+    --border:rgba(255,255,255,0.09);
+    --text:#e7e9ec;
+    --text-dim:#8b93a1;
+    --text-faint:#5b6472;
+    --accent:#5eead4;
+    --accent-dim:rgba(94,234,212,0.12);
+    --radius:10px;
+    --maxw:1080px;
+    --font-display:'Space Grotesk',system-ui,-apple-system,sans-serif;
+    --font-mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    --font-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    font-size:16px;
+    -webkit-font-smoothing:antialiased;
+    background-image:
+      radial-gradient(circle at 15% 0%, rgba(94,234,212,0.07), transparent 45%),
+      radial-gradient(circle at 85% 20%, rgba(94,234,212,0.05), transparent 40%);
+  }
+  ::selection{background:var(--accent);color:#03110e}
+
+  a{color:inherit;text-decoration:none}
+  ul{list-style:none}
+  img,svg{display:block;max-width:100%}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+
+  h1,h2,h3{font-family:var(--font-display);font-weight:700;letter-spacing:-0.01em}
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--accent);
+    letter-spacing:0.02em;
+    display:flex;align-items:center;gap:8px;
+    margin-bottom:16px;
+  }
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--accent);display:inline-block}
+
+  .section-heading{
+    display:flex;align-items:baseline;gap:12px;
+    font-size:1.6rem;
+    margin-bottom:36px;
+  }
+  .section-heading .num{
+    font-family:var(--font-mono);
+    color:var(--accent);
+    font-size:1rem;
+    font-weight:500;
+  }
+  .section-heading::after{
+    content:"";
+    flex:1;
+    height:1px;
+    background:var(--border);
+    margin-left:8px;
+  }
+
+  section{padding:96px 0;border-bottom:1px solid var(--border)}
+  section:last-of-type{border-bottom:none}
+
+  /* ---------- Header / Nav ---------- */
+  header.site-header{
+    position:fixed;top:0;left:0;right:0;
+    z-index:100;
+    background:rgba(10,12,16,0.72);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  nav{
+    max-width:var(--maxw);margin:0 auto;padding:16px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+  }
+  .logo{
+    font-family:var(--font-mono);
+    font-weight:500;
+    font-size:0.95rem;
+    color:var(--text);
+  }
+  .logo span{color:var(--accent)}
+  .nav-links{display:flex;gap:32px;align-items:center}
+  .nav-links a{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--text-dim);
+    transition:color .15s ease;
+    position:relative;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--text)}
+  .nav-links a.active::after{
+    content:"";
+    position:absolute;left:0;right:0;bottom:-6px;
+    height:2px;background:var(--accent);
+  }
+  .nav-toggle{
+    display:none;
+    background:none;border:1px solid var(--border);border-radius:6px;
+    width:38px;height:38px;
+    color:var(--text);
+    cursor:pointer;
+    align-items:center;justify-content:center;
+  }
+  .nav-toggle span,.nav-toggle span::before,.nav-toggle span::after{
+    content:"";display:block;width:16px;height:2px;background:var(--text);
+    position:relative;transition:transform .2s ease,opacity .2s ease;
+  }
+  .nav-toggle span::before{position:absolute;top:-5px}
+  .nav-toggle span::after{position:absolute;top:5px}
+  .nav-toggle.open span{background:transparent}
+  .nav-toggle.open span::before{transform:translateY(5px) rotate(45deg)}
+  .nav-toggle.open span::after{transform:translateY(-5px) rotate(-45deg)}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex;align-items:center;
+    padding-top:96px;
+    border-bottom:1px solid var(--border);
+  }
+  .hero-inner{max-width:760px}
+  .hero h1{
+    font-size:clamp(2.4rem,6vw,3.6rem);
+    line-height:1.1;
+    margin-bottom:14px;
+  }
+  .hero .title{
+    font-family:var(--font-mono);
+    color:var(--accent);
+    font-size:clamp(1rem,2vw,1.2rem);
+    margin-bottom:18px;
+  }
+  .hero .lead{
+    color:var(--text-dim);
+    font-size:1.05rem;
+    max-width:520px;
+    margin-bottom:40px;
+  }
+  .hero .lead b{color:var(--text);font-weight:600}
+
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px}
+  .btn{
+    font-family:var(--font-mono);
+    font-size:0.88rem;
+    padding:12px 20px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    color:var(--text);
+    transition:border-color .15s ease,background .15s ease,transform .15s ease;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn:hover{border-color:var(--accent);background:var(--accent-dim);transform:translateY(-2px)}
+  .btn-primary{background:var(--accent);color:#03110e;border-color:var(--accent);font-weight:500}
+  .btn-primary:hover{background:transparent;color:var(--accent)}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:56px;align-items:start}
+  .about-grid p{color:var(--text-dim);font-size:1.02rem;max-width:60ch}
+  .about-grid p b{color:var(--text);font-weight:600}
+
+  .timeline{display:flex;flex-direction:column;gap:22px}
+  .timeline li{
+    display:flex;flex-direction:column;gap:2px;
+    padding-left:18px;
+    border-left:2px solid var(--border);
+    position:relative;
+  }
+  .timeline li::before{
+    content:"";
+    position:absolute;left:-6px;top:4px;
+    width:10px;height:10px;border-radius:50%;
+    background:var(--bg);border:2px solid var(--accent);
+  }
+  .timeline .t-year{font-family:var(--font-mono);color:var(--accent);font-size:0.8rem}
+  .timeline .t-name{font-weight:600;font-size:0.98rem}
+  .timeline .t-sub{color:var(--text-faint);font-size:0.85rem}
+
+  /* ---------- Projects ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:24px;
+  }
+  .card{
+    background:var(--bg-elev);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:28px;
+    display:flex;flex-direction:column;
+    transition:transform .18s ease,border-color .18s ease,box-shadow .18s ease;
+  }
+  .card:hover{
+    transform:translateY(-4px);
+    border-color:rgba(94,234,212,0.35);
+    box-shadow:0 12px 32px -12px rgba(0,0,0,0.6);
+  }
+  .card h3{font-size:1.12rem;margin-bottom:10px}
+  .card p{color:var(--text-dim);font-size:0.92rem;flex:1;margin-bottom:18px}
+  .tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px}
+  .tag{
+    font-family:var(--font-mono);
+    font-size:0.72rem;
+    color:var(--accent);
+    background:var(--accent-dim);
+    border:1px solid rgba(94,234,212,0.2);
+    padding:4px 9px;
+    border-radius:5px;
+  }
+  .card-link{
+    font-family:var(--font-mono);
+    font-size:0.85rem;
+    color:var(--text);
+    display:inline-flex;align-items:center;gap:6px;
+    border-top:1px solid var(--border);
+    padding-top:16px;
+  }
+  .card-link svg{width:15px;height:15px}
+  .card-link:hover{color:var(--accent)}
+
+  /* ---------- Skills ---------- */
+  .skills-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+  }
+  .skill-group{
+    background:var(--bg-elev);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .skill-group h3{
+    font-family:var(--font-mono);
+    font-size:0.82rem;
+    color:var(--text-faint);
+    text-transform:uppercase;
+    letter-spacing:0.06em;
+    margin-bottom:14px;
+    font-weight:500;
+  }
+  .skill-group ul{display:flex;flex-wrap:wrap;gap:8px}
+  .skill-group li{
+    font-size:0.88rem;
+    background:var(--bg-elev-2);
+    border:1px solid var(--border);
+    padding:6px 11px;
+    border-radius:6px;
+  }
+  .skill-group li small{color:var(--text-faint);font-size:0.78rem}
+
+  /* ---------- Contact ---------- */
+  .contact{text-align:center}
+  .contact h2{
+    font-size:1.9rem;
+    margin-bottom:12px;
+  }
+  .contact p{color:var(--text-dim);margin-bottom:36px}
+  .contact-row{
+    display:flex;justify-content:center;gap:20px;flex-wrap:wrap;
+  }
+  .icon-link{
+    display:flex;align-items:center;gap:10px;
+    font-family:var(--font-mono);
+    font-size:0.9rem;
+    padding:12px 20px;
+    border:1px solid var(--border);
+    border-radius:8px;
+    transition:border-color .15s ease,color .15s ease,transform .15s ease;
+  }
+  .icon-link:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-2px)}
+  .icon-link svg{width:18px;height:18px}
+
+  footer{
+    padding:32px 0;
+    text-align:center;
+    color:var(--text-faint);
+    font-family:var(--font-mono);
+    font-size:0.78rem;
+  }
+
+  /* ---------- Reveal animation ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in-view{opacity:1;transform:translateY(0)}
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto}
+    .reveal{opacity:1;transform:none;transition:none}
+    .btn:hover,.card:hover,.icon-link:hover{transform:none}
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:860px){
+    .about-grid{grid-template-columns:1fr;gap:40px}
+    .project-grid{grid-template-columns:1fr 1fr}
+    .skills-grid{grid-template-columns:1fr 1fr}
+  }
+
+  @media (max-width:640px){
+    section{padding:72px 0}
+    .nav-links{
+      position:absolute;top:100%;left:0;right:0;
+      background:var(--bg-elev);
+      border-bottom:1px solid var(--border);
+      flex-direction:column;
+      align-items:flex-start;
+      gap:0;
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease;
+    }
+    .nav-links.open{max-height:280px}
+    .nav-links a{width:100%;padding:16px 24px;border-bottom:1px solid var(--border)}
+    .nav-toggle{display:flex}
+    .project-grid{grid-template-columns:1fr}
+    .skills-grid{grid-template-columns:1fr}
+    .hero-actions{gap:10px}
+    .btn{padding:11px 16px;font-size:0.82rem}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <nav>
+    <a href="#hero" class="logo">horia<span>.</span>state</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+  <section id="hero" class="hero">
+    <div class="wrap hero-inner">
+      <p class="eyebrow">available for junior data roles</p>
+      <h1>Horia Iulian State</h1>
+      <p class="title">Data Analyst · Junior Data Engineer</p>
+      <p class="lead">Vienna-based. <b>SQL · Python · Power BI.</b> BSc Data Science @ IU.</p>
+      <div class="hero-actions">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="https://github.com/hiulian69" target="_blank" rel="noopener">
+          <span class="btn">GitHub</span>
+        </a>
+        <a href="#" class="btn" rel="noopener">LinkedIn</a>
+        <a href="mailto:horia.istate@gmail.com" class="btn">Email</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-heading reveal"><span class="num">01.</span> About</div>
+      <div class="about-grid">
+        <p class="reveal">
+          I relocated to Vienna in 2014, built a professional life here in German, and spent the last three years
+          building the skills to move into data. That transition: a full-time-equivalent Data Science Bootcamp at
+          Brainster (2020–2021), the Google Data Analytics Professional Certificate (2022), and an ongoing BSc in
+          Data Science at IU International University of Applied Sciences — coursework in SQL, Statistics, Python,
+          Linear Algebra, and Business Intelligence. What I bring that's less common among junior candidates:
+          <b>German at B2/C1</b> used daily in a professional environment since 2023, <b>Vienna residency</b> with
+          no relocation uncertainty, and a customer-facing operations background that taught me what business
+          questions feel like before the data answers them.
+        </p>
+        <ul class="timeline reveal">
+          <li>
+            <span class="t-year">2020 – 2021</span>
+            <span class="t-name">Data Science Bootcamp</span>
+            <span class="t-sub">Brainster · full-time equivalent</span>
+          </li>
+          <li>
+            <span class="t-year">2022</span>
+            <span class="t-name">Data Analytics Professional Certificate</span>
+            <span class="t-sub">Google</span>
+          </li>
+          <li>
+            <span class="t-year">Ongoing</span>
+            <span class="t-name">BSc Data Science</span>
+            <span class="t-sub">IU International University of Applied Sciences</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="section-heading reveal"><span class="num">02.</span> Projects</div>
+      <div class="project-grid">
+
+        <article class="card reveal">
+          <h3>Airbnb Vienna SQL Case Study</h3>
+          <p>20-entity PostgreSQL schema built from scratch: ERD, normalized DDL, and architecture docs answering
+             10 analytical business questions — occupancy by district, superhost performance, price elasticity.</p>
+          <div class="tags">
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Data Modeling</span>
+          </div>
+          <a class="card-link" href="https://github.com/hiulian69" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card reveal">
+          <h3>Vienna Mobility Map</h3>
+          <p>End-to-end Python pipeline pulling from the City of Vienna's open WFS API, rendered as an interactive
+             geospatial visualization of mobility infrastructure across the city.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">geopandas</span>
+            <span class="tag">folium</span>
+          </div>
+          <a class="card-link" href="https://github.com/hiulian69" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+        <article class="card reveal">
+          <h3>K-Means Customer Segmentation</h3>
+          <p>A teaching presentation breaking down the K-Means algorithm for a non-technical audience, paired with
+             a worked Python example on real customer data.</p>
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">Communication</span>
+          </div>
+          <a class="card-link" href="https://github.com/hiulian69" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+            View on GitHub
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="section-heading reveal"><span class="num">03.</span> Skills</div>
+      <div class="skills-grid">
+
+        <div class="skill-group reveal">
+          <h3>SQL</h3>
+          <ul>
+            <li>PostgreSQL</li>
+            <li>MySQL</li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3>Python</h3>
+          <ul>
+            <li>pandas</li>
+            <li>scikit-learn</li>
+            <li>geopandas</li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3>BI</h3>
+          <ul>
+            <li>Power BI <small>(in progress)</small></li>
+            <li>Tableau</li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3>Tools</h3>
+          <ul>
+            <li>Git</li>
+            <li>Excel</li>
+          </ul>
+        </div>
+
+        <div class="skill-group reveal">
+          <h3>Languages</h3>
+          <ul>
+            <li>German <small>(B2/C1 · daily use)</small></li>
+            <li>English <small>(C1)</small></li>
+            <li>Romanian <small>(native)</small></li>
+            <li>Spanish <small>(A2)</small></li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap">
+      <h2 class="reveal">Let's talk data.</h2>
+      <p class="reveal">Open to junior data analyst / data engineer roles in Vienna and remote-friendly EU teams.</p>
+      <div class="contact-row reveal">
+        <a class="icon-link" href="mailto:horia.istate@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
+          Email
+        </a>
+        <a class="icon-link" href="https://github.com/hiulian69" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          GitHub
+        </a>
+        <a class="icon-link" href="#" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> Horia Iulian State · Built with plain HTML, CSS &amp; JS.</p>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var open = links.classList.toggle('open');
+    toggle.classList.toggle('open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  var navAnchors = links.querySelectorAll('a');
+  var sections = Array.prototype.map.call(navAnchors, function(a){
+    return document.querySelector(a.getAttribute('href'));
+  }).filter(Boolean);
+
+  if ('IntersectionObserver' in window) {
+    var navObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        var id = entry.target.getAttribute('id');
+        var link = links.querySelector('a[href="#' + id + '"]');
+        if (!link) return;
+        if (entry.isIntersecting) {
+          navAnchors.forEach(function(a){ a.classList.remove('active'); });
+          link.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(function(s){ navObserver.observe(s); });
+
+    var revealObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ revealObserver.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in-view'); });
+  }
+})();
+</script>
+
+</body>
+</html>
